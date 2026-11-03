@@ -87,7 +87,7 @@ const challenges = [
     phase: "FASE 3: LA BÚSQUEDA EN EL OTRO MUNDO",
     title: "La Estación Olvidada",
     text: "Siempre las tienes cerca y las ves a diario. Ya no las usas, pero siguen allí esperando por ti. Debes ver DEBAJO de la calcomanía.",
-    answers: ["circuito", "resistencia", "clave15"]
+    answers: ["bobinski", "Bobinski"]
   },
   {
     phase: "FASE 3: LA BÚSQUEDA EN EL OTRO MUNDO",
