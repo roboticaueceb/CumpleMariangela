@@ -1,0 +1,405 @@
+:root {
+  --bg-color: #090d16;
+  --card-bg: rgba(15, 23, 42, 0.85);
+  --border-color: #1e293b;
+  --accent-blue: #0056b3; /* Tono del club */
+  --accent-cyan: #38bdf8;
+  --accent-amber: #f59e0b;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Orbitron', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Grilla sutil de fondo */
+.background-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 760px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header & Logo */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.logo-wrapper {
+  flex-shrink: 0;
+}
+
+.club-logo {
+  max-width: 110px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.main-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Barra de Progreso */
+.progress-section {
+  background: var(--card-bg);
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.level-indicator {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-cyan);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 10px;
+  background-color: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  transition: width 0.4s ease-in-out;
+}
+
+/* Consola de Desafío */
+.console-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.console-topbar {
+  background-color: #0b1120;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot.red { background-color: var(--accent-red); }
+.dot.yellow { background-color: var(--accent-amber); }
+.dot.green { background-color: var(--accent-green); }
+
+.console-id {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.console-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.phase-tag {
+  color: var(--accent-amber);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.question-title {
+  font-size: 1.35rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.question-text {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* Pista de hardware */
+.hardware-hint-box {
+  background: rgba(2, 132, 199, 0.1);
+  border-left: 3px solid var(--accent-cyan);
+  padding: 0.75rem 1rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hint-icon {
+  font-size: 1rem;
+}
+
+.hint-label {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+.hint-text {
+  color: #94a3b8;
+}
+
+/* Formulario & Input */
+.input-cluster {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.prompt-symbol {
+  position: absolute;
+  left: 1rem;
+  color: var(--accent-cyan);
+  font-weight: 800;
+}
+
+.input-wrapper input {
+  width: 100%;
+  background-color: #0b1120;
+  border: 1px solid var(--border-color);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  padding: 0.85rem 1rem 0.85rem 2.2rem;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+button {
+  background-color: var(--accent-blue);
+  color: #fff;
+  border: none;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background-color: #004085;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.feedback-msg {
+  min-height: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.feedback-msg.error {
+  color: var(--accent-red);
+}
+
+.feedback-msg.success {
+  color: var(--accent-green);
+}
+
+/* Carta Final */
+.final-letter-card {
+  background: var(--card-bg);
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.celebration-badge {
+  font-size: 0.85rem;
+  color: var(--accent-amber);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.celebration-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: #fff;
+  text-align: center;
+}
+
+.letter-content {
+  background-color: #0b1120;
+  padding: 1.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.letter-location {
+  background: rgba(245, 158, 11, 0.1);
+  border-left: 3px solid var(--accent-amber);
+  padding: 1rem;
+  border-radius: 0 6px 6px 0;
+  color: #fde68a;
+}
+
+.letter-signature {
+  margin-top: 1rem;
+  text-align: right;
+  color: var(--accent-cyan);
+}
+
+.restart-button {
+  align-self: center;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.6rem 1.2rem;
+}
+
+.restart-button:hover {
+  background-color: #1e293b;
+  color: #fff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .input-cluster {
+    flex-direction: column;
+  }
+  button {
+    padding: 0.85rem;
+  }
+}
