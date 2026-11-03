@@ -3,100 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Protocolo 15 // Acceso de Seguridad</title>
+  <title>El Otro Mundo // Protocolo 15</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="background-grid"></div>
-
   <div class="container">
-    <!-- Encabezado con Logo del Club UECEB -->
-    <header class="header">
-      <div class="logo-wrapper">
-        <img src="logo_club_ueceb.png" alt="Club de Robótica UECEB" class="club-logo" id="clubLogo" onerror="this.src='https://placehold.co/180x80/0d1117/38bdf8?text=UECEB+ROBOTICA';">
+    
+    <!-- PANTALLA 1: PORTAL DE BIENVENIDA -->
+    <section class="screen-card intro-card" id="introScreen">
+      <!-- Contenedor con zoom que recorta las franjas negras -->
+      <div class="portal-emblem-frame">
+        <img src="logo_club_ueceb.png" alt="Club de Robótica UECEB" class="club-logo-main">
       </div>
-      <div class="header-titles">
-        <div class="badge">SEC_PROTOCOL_ACTIVE // NIVEL: MARIANGELA</div>
-        <h1 class="main-title">OPERACIÓN QUINCE</h1>
-        <p class="subtitle">Sincroniza tus respuestas con el Descifrador ESP32-C3 para desbloquear el sistema central del club.</p>
-      </div>
-    </header>
-
-    <!-- Barra de Estado y Progreso -->
-    <section class="progress-section">
-      <div class="progress-info">
-        <span>ESTADO DEL SISTEMA: <strong id="progressText">0 / 15 DESBLOQUEADOS</strong></span>
-        <span id="levelBadge" class="level-indicator">FASE 1: HISTORIA</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressBarFill"></div>
-      </div>
-    </section>
-
-    <!-- Contenedor Principal de la Terminal de Preguntas -->
-    <main class="console-box" id="challengeContainer">
-      <div class="console-topbar">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-        <span class="console-id" id="questionStage">DESAFÍO #01 DE 15</span>
-      </div>
-
-      <div class="console-body">
-        <div class="phase-tag" id="phaseTag">FASE 1: ORÍGENES DEL CLUB</div>
-        <h2 class="question-title" id="questionTitle">Cargando desafío...</h2>
-        <p class="question-text" id="questionText">Iniciando sistema...</p>
-        
-        <!-- Indicador de conexión con el hardware -->
-        <div class="hardware-hint-box">
-          <span class="hint-icon">📟</span>
-          <span class="hint-label">DESCIFRADOR ESP32:</span>
-          <span class="hint-text" id="hardwareNote">Consulta la pantalla OLED de tu módulo para obtener la pista.</span>
-        </div>
-
-        <form id="answerForm" class="input-cluster" autocomplete="off">
-          <div class="input-wrapper">
-            <span class="prompt-symbol">&gt;</span>
-            <input type="text" id="answerInput" placeholder="Introduce la clave aquí..." autofocus>
-          </div>
-          <button type="submit" id="submitBtn">TRANSMITIR</button>
-        </form>
-
-        <div id="feedbackMessage" class="feedback-msg"></div>
-      </div>
-    </main>
-
-    <!-- Panel de Carta / Recompensa Final -->
-    <section class="final-letter-card hidden" id="finalCard">
-      <div class="celebration-badge">✦ ACCESO TOTAL CONCEDIDO // 15 AÑOS ✦</div>
-      <h2 class="celebration-title">¡Feliz Cumpleaños, Mariangela!</h2>
       
-      <div class="letter-content" id="letterBody">
-        <p><strong>[Tu Carta Comienza Aquí]</strong></p>
-        
-        <p>Mariangela, has recorrido cada pista, descifrado cada acertijo de la UECEB y conectado cada pieza con el descifrador que construimos.</p>
-        
-        <p>Verte crecer, trabajar en los proyectos y meterle tanta dedicación a cada reto en el club ha sido brutal. Llegar a los 15 es un hito enorme, y este desafío no era solo para poner a prueba tu memoria y habilidad técnica, sino para recordarte todo el camino que ya has construido con nosotros.</p>
-        
-        <p>Gracias por tu chispa, por tu constancia con el equipo y por ser una parte esencial del Club de Robótica y de todo lo que creamos día a día.</p>
-        
-        <p class="letter-location"><strong>UBICACIÓN DE TU REGALO:</strong><br>
-        Revisa con Nathie en el lugar donde descansan las placas y los componentes principales del taller. Hay una caja esperando por ti.</p>
+      <div class="key-badge">🗝️</div>
 
-        <div class="letter-signature">
-          <p>Con mucho aprecio y orgullo,<br><strong>Profe Ramsés &amp; Nathalie</strong></p>
+      <div class="title-group">
+        <h1 class="portal-title">El Umbral de los Quince</h1>
+        <div class="badge-coraline">✦ PROTOCOLO SECRETO // ACCESO RESTRINGIDO ✦</div>
+      </div>
+
+      <div class="intro-letter-body">
+        <p>
+          Para tu cumpleaños número <strong>#15</strong>, hemos decidido escribirte dos cartas muy especiales para ti. Sin embargo, hemos querido ofrecerte un desafío: <strong>encontrar las 15 respuestas</strong> a las preguntas que te haremos, para poder desbloquear nuestros mensajes.
+        </p>
+        
+        <p>
+          Las preguntas están enfocadas en conocimientos sobre el <strong>Club de Robótica</strong>, del que ahora eres una parte esencial de la familia. Te recomendamos:
+        </p>
+        
+        <ul class="intro-tips-list">
+          <li><span>🧵</span> Tomar nota de las respuestas y sus pistas.</li>
+          <li><span>🌀</span> Tener mucha imaginación para superar los retos.</li>
+          <li><span>🪡</span> Analizar todo con calma, porque ahí es donde está la clave.</li>
+        </ul>
+
+        <div class="descifrador-callout">
+          <div class="callout-header">
+            <span>📟</span>
+            <strong>TU HERRAMIENTA DE CAMPO: EL DESCIFRADOR ESP32-C3</strong>
+          </div>
+          <p>
+            Te hemos entregado el Descifrador: un ESP32-C3 con pantalla OLED y botón. En sus circuitos viven todas las pistas que necesitas para cruzar al otro lado.
+          </p>
         </div>
       </div>
 
-      <button id="restartBtn" class="restart-button">REINICIAR DESAFÍO</button>
+      <button id="startQuestBtn" class="coraline-btn enter-btn">CRUZAR LA PUERTA SECRETA</button>
     </section>
 
-    <!-- Footer -->
+    <!-- PANTALLA 2: TERMINAL DE RETOS -->
+    <section class="screen-card challenge-section hidden" id="gameScreen">
+      <header class="quest-header">
+        <!-- Contenedor con zoom para la cabecera -->
+        <div class="mini-logo-container">
+          <img src="logo_club_ueceb.png" alt="Club UECEB" class="mini-logo">
+        </div>
+        <div class="quest-titles">
+          <div class="badge-coraline small">EL OTRO MUNDO // RETO 15</div>
+          <h2 class="sub-header-title">DESCIFRA EL ENIGMA</h2>
+        </div>
+      </header>
+
+      <!-- Barra de Progreso -->
+      <div class="progress-container">
+        <div class="progress-labels">
+          <span class="progress-counter" id="progressText">0 / 15 LLAVES ENCONTRADAS</span>
+          <span id="levelBadge" class="level-indicator">FASE 1: ORÍGENES</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBarFill"></div>
+        </div>
+      </div>
+
+      <!-- Consola de Pregunta -->
+      <main class="console-box" id="challengeContainer">
+        <div class="console-topbar">
+          <div class="button-eyes-group">
+            <span class="button-eye red"></span>
+            <span class="button-eye yellow"></span>
+            <span class="button-eye blue"></span>
+          </div>
+          <span class="console-id" id="questionStage">PUERTA #01 DE 15</span>
+        </div>
+
+        <div class="console-body">
+          <div class="phase-tag" id="phaseTag">FASE 1: ORÍGENES DEL CLUB</div>
+          <h3 class="question-title" id="questionTitle">Cargando enigma...</h3>
+          <p class="question-text" id="questionText">Sincronizando con el ESP32...</p>
+          
+          <div class="hardware-hint-box">
+            <div class="hint-hardware-led"></div>
+            <div class="hint-texts">
+              <span class="hint-label">DESCIFRADOR ESP32:</span>
+              <span class="hint-text" id="hardwareNote">Consulta la pantalla OLED de tu módulo para obtener la pista.</span>
+            </div>
+          </div>
+
+          <form id="answerForm" class="input-cluster" autocomplete="off">
+            <div class="input-wrapper">
+              <span class="prompt-symbol">🗝️</span>
+              <input type="text" id="answerInput" placeholder="Introduce la palabra clave..." autofocus>
+            </div>
+            <button type="submit" id="submitBtn" class="coraline-btn btn-submit">DESBLOQUEAR</button>
+          </form>
+
+          <div id="feedbackMessage" class="feedback-msg"></div>
+        </div>
+      </main>
+    </section>
+
+    <!-- PANTALLA 3: LAS DOS CARTAS FINALES -->
+    <section class="screen-card final-letter-card hidden" id="finalCard">
+      <div class="celebration-badge">✦ TODAS LAS LLAVES ENCONTRADAS // 15 AÑOS ✦</div>
+      <h2 class="celebration-title">¡Cruzaste la Puerta, Mariangela!</h2>
+      <p class="celebration-subtitle">Has descifrado cada secreto del club. Aquí están las dos cartas que guardamos para ti:</p>
+
+      <div class="letters-grid">
+        <article class="letter-parchment">
+          <div class="letter-ribbon">CARTA I: PROFE RAMSÉS</div>
+          <div class="letter-body-text">
+            <p><strong>Querida Mariangela,</strong></p>
+            <p>Has recorrido cada pista, descifrado cada acertijo de la UECEB y conectado cada pieza con el descifrador que construimos.</p>
+            <p>Verte crecer, trabajar en los proyectos y meterle tanta dedicación a cada reto en el club ha sido un orgullo enorme. Llegar a los 15 es un hito gigantesco, y este desafío no era solo para poner a prueba tu memoria o tu destreza técnica, sino para recordarte la huella que ya has dejado en nuestro taller.</p>
+            <p>Gracias por tu alegría, tu disciplina y por ser un pilar fundamental de nuestra familia de robótica.</p>
+            <p class="signature-line">— Profe Ramsés</p>
+          </div>
+        </article>
+
+        <article class="letter-parchment">
+          <div class="letter-ribbon">CARTA II: NATHALIE</div>
+          <div class="letter-body-text">
+            <p><strong>Hermana querida,</strong></p>
+            <p>[Espacio reservado para el mensaje personal de Nathie]</p>
+            <p>¡Felices 15 años! Eres la mejor compañera de aventuras y proyectos que podría desear tener en el colegio y en la vida.</p>
+            <p>Estoy sumamente feliz y orgullosa de celebrar este día tan especial contigo y ver todo lo que eres capaz de lograr cuando te lo propones.</p>
+            <p class="signature-line">— Tu hermana, Nathalie</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="gift-location-box">
+        <span class="box-icon">🎁</span>
+        <div>
+          <h4>EL COFRE DEL TESORO:</h4>
+          <p>Reúnanse con Nathalie y busquen en el taller el lugar exacto donde reposan los actuadores y componentes principales. Hay una caja esperando por ti.</p>
+        </div>
+      </div>
+
+      <button id="restartBtn" class="restart-button">REPASAR DESAFÍO</button>
+    </section>
+
     <footer class="footer">
-      <span>CLUB DE ROBÓTICA UECEB // PROFE RAMSÉS</span>
+      <span>CLUB DE ROBÓTICA UECEB // PROFE RAMSÉS &amp; NATHALIE</span>
     </footer>
   </div>
 

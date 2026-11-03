@@ -1,4 +1,4 @@
-// Definición de los 15 retos (las pistas ahora viven exclusivamente en el ESP32)
+// Banco de 15 enigmas (las pistas viven en el ESP32)
 const challenges = [
   // FASE 1: HISTORIA DEL CLUB
   {
@@ -9,14 +9,14 @@ const challenges = [
   },
   {
     phase: "FASE 1: ORÍGENES DEL CLUB",
-    title: "Alianzas Pasadas (y amargas)",
+    title: "Alianzas Pasadas",
     text: "Mucho antes de las victorias actuales, hubo alianzas y equipos hermanos. ¿Cuál es el primer nombre de la coach de Adagroup?",
     answers: ["daniela", "Daniela"]
   },
   {
     phase: "FASE 1: ORÍGENES DEL CLUB",
-    title: "Nuestro primer gran escenario",
-    text: "El escenario donde el club dejó de ser un proyecto local y se midió a nivel nacional por primera vez. Cuatro letras marcaron el inicio:",
+    title: "El primer gran escenario",
+    text: "El escenario donde el club dejó de ser un proyecto local y se midió a nivel nacional por primera vez. Son solo cuatro letras:",
     answers: ["ivic", "IVIC", "Ivic"]
   },
   {
@@ -28,21 +28,21 @@ const challenges = [
   {
     phase: "FASE 1: ORÍGENES DEL CLUB",
     title: "Némesis",
-    text: "Toda historia necesita un antagonista clásico. ¿Quiénes son nuestros enemigos jurados?",
-    answers: ["adakademy", "adacademy"]
+    text: "Toda historia necesita un antagonista clásico. ¿Quiénes son nuestros enemigos jurados más cercanos en cada competencia?",
+    answers: ["adakademy", "adacademy", "Adakademy"]
   },
 
   // FASE 2: ERA MODERNA
   {
     phase: "FASE 2: ERA MODERNA",
-    title: "El nacimiento de un Líder",
-    text: "Todos los líderes comienzan con algo sencillo y cotidiano. ¿Qué es?",
+    title: "El Génesis del Mando",
+    text: "Nuestro líder comenzó como todos, con algo sencillo. ¿Qué es?",
     answers: ["teclado"]
   },
   {
     phase: "FASE 2: ERA MODERNA",
     title: "El Alias Secreto",
-    text: "Todos los miembros tienen un apodo. Entre los Blenderizados hay uno que es el menos conocido de todos. ¿Cuál es?",
+    text: "Todos los miembros tienen un apodo. Sin embargo, entre los Blenderizados, hay uno que es el menos conocido de todos. ¿Cuál es?",
     answers: ["la barbarita", "barbarita"]
   },
   {
@@ -59,49 +59,52 @@ const challenges = [
   },
   {
     phase: "FASE 2: ERA MODERNA",
-    title: "La mascota del Club",
-    text: "No programa ni conecta, pero es la inspiración principal de un equipo. ¿Conoces la mascota del Club?",
-    answers: ["rossi"]
+    title: "El Alma de un equipo",
+    text: "Uno de nuestros equipos tiene en realidad 4 miembros. No programa ni suelda, pero su presencia siempre está. ¿Quién es esta mascota?",
+    answers: ["rossi", "Rossi", "Rossy", "rossy"]
   },
 
   // FASE 3: LA BÚSQUEDA FÍSICA
   {
-    phase: "FASE 3: LA BÚSQUEDA FÍSICA",
+    phase: "FASE 3: LA BÚSQUEDA EN EL OTRO MUNDO",
     title: "Coordenada Cotidiana",
     text: "Convives en él todo el tiempo. Siempre está a la vista. Uno de los puestos esconde un secreto. El dueño original del sitio es la clave.",
-    answers: ["zoe"] 
+    answers: ["Zoe", "zoe"] 
   },
   {
-    phase: "FASE 3: LA BÚSQUEDA FÍSICA",
+    phase: "FASE 3: LA BÚSQUEDA EN EL OTRO MUNDO",
     title: "Azules en el Patio",
     text: "Siempre estamos en ellas. Azules, pero translúcidas. En una de ellas encontrarás una calcomanía del club señalando un juego.",
-    answers: ["ludo"]
+    answers: ["ludo", "Ludo"]
   },
   {
-    phase: "FASE 3: LA BÚSQUEDA FÍSICA",
+    phase: "FASE 3: LA BÚSQUEDA EN EL OTRO MUNDO",
     title: "La Terminal Traicionera",
     text: "Está a la vista de todos sin llamar la atención. Traicionera en apagones. Supera el desafío en tu ESP32 para descubrir la terminal a revisar.",
-    answers: ["reset15", "cambur", "pinton"] 
+    answers: ["pinton"] 
   },
   {
-    phase: "FASE 3: LA BÚSQUEDA FÍSICA",
+    phase: "FASE 3: LA BÚSQUEDA EN EL OTRO MUNDO",
     title: "La Estación Olvidada",
-    text: "Siempre las sueles tener muy cerca. Ya no las usas, pero siguen allí esperando por ti. Debes ver debajo de la calcomanía.",
+    text: "Siempre las tienes cerca y las ves a diario. Ya no las usas, pero siguen allí esperando por ti. Debes ver DEBAJO de la calcomanía.",
     answers: ["circuito", "resistencia", "clave15"]
   },
   {
-    phase: "FASE 3: LA BÚSQUEDA FÍSICA",
+    phase: "FASE 3: LA BÚSQUEDA EN EL OTRO MUNDO",
     title: "La Cuarta Pared",
     text: "Para romper la cuarta pared, debes lograr ver detrás de la pantalla del salón de robótica. Algo sobresaliente se nota demasiado.",
-    answers: ["smraza"]
+    answers: ["smraza", "SMRAZA", "Smraza"]
   }
 ];
 
 let currentIndex = 0;
 
-// Elementos del DOM
-const challengeContainer = document.getElementById("challengeContainer");
+const introScreen = document.getElementById("introScreen");
+const gameScreen = document.getElementById("gameScreen");
 const finalCard = document.getElementById("finalCard");
+const startQuestBtn = document.getElementById("startQuestBtn");
+
+const challengeContainer = document.getElementById("challengeContainer");
 const questionStage = document.getElementById("questionStage");
 const phaseTag = document.getElementById("phaseTag");
 const questionTitle = document.getElementById("questionTitle");
@@ -123,6 +126,12 @@ function cleanString(str) {
     .trim();
 }
 
+startQuestBtn.addEventListener("click", () => {
+  introScreen.classList.add("hidden");
+  gameScreen.classList.remove("hidden");
+  loadChallenge(0);
+});
+
 function loadChallenge(index) {
   if (index >= challenges.length) {
     showFinalReward();
@@ -131,12 +140,11 @@ function loadChallenge(index) {
 
   const q = challenges[index];
   const stageNum = String(index + 1).padStart(2, '0');
-  questionStage.textContent = `DESAFÍO #${stageNum} DE 15`;
+  questionStage.textContent = `PUERTA #${stageNum} DE 15`;
   phaseTag.textContent = q.phase;
   questionTitle.textContent = q.title;
   questionText.textContent = q.text;
 
-  // El recordatorio en la web ahora solo le dice qué buscar en su pantalla
   hardwareNote.textContent = `Sincroniza con el descifrador en [PISTA #${stageNum}] usando el botón.`;
 
   answerInput.value = "";
@@ -150,17 +158,17 @@ function loadChallenge(index) {
 function updateProgress(index) {
   const percentage = (index / challenges.length) * 100;
   progressBarFill.style.width = `${percentage}%`;
-  progressText.textContent = `${index} / ${challenges.length} DESBLOQUEADOS`;
+  progressText.textContent = `${index} / ${challenges.length} LLAVES ENCONTRADAS`;
 
   if (index < 5) {
-    levelBadge.textContent = "FASE 1: HISTORIA";
-    levelBadge.style.color = "var(--accent-cyan)";
+    levelBadge.textContent = "FASE 1: ORÍGENES";
+    levelBadge.style.color = "var(--coraline-cyan)";
   } else if (index < 10) {
     levelBadge.textContent = "FASE 2: ERA MODERNA";
-    levelBadge.style.color = "var(--accent-amber)";
+    levelBadge.style.color = "var(--coraline-yellow)";
   } else {
     levelBadge.textContent = "FASE 3: BÚSQUEDA FÍSICA";
-    levelBadge.style.color = "var(--accent-green)";
+    levelBadge.style.color = "#f43f5e";
   }
 }
 
@@ -174,7 +182,7 @@ answerForm.addEventListener("submit", (e) => {
   const validAnswers = challenges[currentIndex].answers.map(cleanString);
 
   if (validAnswers.includes(processed)) {
-    feedbackMessage.textContent = "¡CÓDIGO CORRECTO! AVANZANDO AL SIGUIENTE NIVEL...";
+    feedbackMessage.textContent = "¡LLAVE CORRECTA! ABRIENDO PUERTA...";
     feedbackMessage.className = "feedback-msg success";
 
     setTimeout(() => {
@@ -182,7 +190,7 @@ answerForm.addEventListener("submit", (e) => {
       loadChallenge(currentIndex);
     }, 600);
   } else {
-    feedbackMessage.textContent = "ACCESO DENEGADO // CLAVE INCORRECTA";
+    feedbackMessage.textContent = "CANDADO CERRADO // RESPUESTA INCORRECTA";
     feedbackMessage.className = "feedback-msg error";
     answerInput.select();
   }
@@ -190,7 +198,7 @@ answerForm.addEventListener("submit", (e) => {
 
 function showFinalReward() {
   updateProgress(challenges.length);
-  challengeContainer.classList.add("hidden");
+  gameScreen.classList.add("hidden");
   finalCard.classList.remove("hidden");
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -198,8 +206,5 @@ function showFinalReward() {
 restartBtn.addEventListener("click", () => {
   currentIndex = 0;
   finalCard.classList.add("hidden");
-  challengeContainer.classList.remove("hidden");
-  loadChallenge(0);
+  introScreen.classList.remove("hidden");
 });
-
-loadChallenge(currentIndex);
